@@ -39,7 +39,7 @@ let shower = {
 }
 $(function () {
     exceed.configure({url:'http://ecourse.cpe.ku.ac.th:1515/api/',prefix:'palmyut-'})
-    $('#cover-spin').show(0)
+    //$('#cover-spin').show(0)
 
     shower.updateData()
     setInterval(function () { shower.updateData() }, 7000)
