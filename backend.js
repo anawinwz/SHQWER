@@ -1,7 +1,9 @@
 let backend = {
-    dataList: ['localswitch', 'webswitch', 'Temperature', 'Huminity', 'currQueue_A', 'currQueue_B','lastUserId','avgM','Mcnt'],
+    dataList: ['walkin','walkout','localswitch', 'webswitch', 'Temperature', 'Huminity', 'currQueue_A', 'currQueue_B','lastUserId','avgM','Mcnt'],
     localswitch: 1,
     Temperature: 0,
+    walkin: 0,
+    walkout: 0,
     Huminity: 0,
     currQueue_A: "",
     currQueue_B: "",

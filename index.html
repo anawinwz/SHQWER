@@ -23,138 +23,151 @@
         <div class="col-6" align="center">
             <div id="room-list" class="list-room rounded" style="margin-left:10%; margin-top:5%; width:80%; height:165%;">
                 <h2 align="center">List</h2>
-                <div align="center">Room A</div>
-                <div class="row">
-                    <div class="col-2" style="padding-right: 0%">
-                        <div>
-                            <img class="room-icon" src="img/room.png" align="right">
+                <div>
+                    <div align="center" class="themeFont">Room A</div>
+
+                    <div class="row">
+                        <div class="col-2" style="padding-right: 0%">
+                            <div>
+                                <img class="room-icon" src="img/room.png" align="right">
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div align="left">A1</div>
+                        </div>
+                        <div id="roomA1_status" class="col-6">
+                            Loading...
                         </div>
                     </div>
-                    <div class="col-4">
-                        <div align="left">room 1</div>
+                    <div class="row">
+                        <div class="col-2" style="padding-right: 0%">
+                            <div>
+                                <img class="room-icon" src="img/room.png" align="right">
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div align="left">A2</div>
+                        </div>
+                        <div id="roomA2_status" class="col-6">
+                            Loading...
+                        </div>
                     </div>
-                    <div id="roomA1_status"class="col-6">
-                        <div>Available</div>
+                    <div class="row">
+                        <div class="col-2" style="padding-right: 0%">
+                            <div>
+                                <img class="room-icon" src="img/room.png" align="right">
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div align="left">A3</div>
+                        </div>
+                        <div id="roomA3_status" class="col-6">
+                            Loading...
+                        </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-2" style="padding-right: 0%">
-                        <div>
-                            <img class="room-icon" src="img/room.png" align="right">
+                <div>
+                    <div align="center" class="themeFont">Room B</div>
+                    <div class="row">
+                        <div class="col-2" style="padding-right: 0%">
+                            <div>
+                                <img class="room-icon" src="img/room.png" align="right">
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div align="left">B1</div>
+                        </div>
+                        <div id="roomB1_status" class="col-6">
+                            Loading...
                         </div>
                     </div>
-                    <div class="col-4">
-                        <div align="left">room 2</div>
-                    </div>
-                    <div id="roomA2_status" class="col-6">
-                        <div>Available</div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-2" style="padding-right: 0%">
-                        <div>
-                            <img class="room-icon" src="img/room.png" align="right">
+                    <div class="row">
+                        <div class="col-2" style="padding-right: 0%">
+                            <div>
+                                <img class="room-icon" src="img/room.png" align="right">
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div align="left">B2</div>
+                        </div>
+                        <div id="roomB2_status" class="col-6">
+                            Loading...
                         </div>
                     </div>
-                    <div class="col-4">
-                        <div align="left">room 3</div>
-                    </div>
-                    <div id="roomA3_status"class="col-6">
-                        <div>Available</div>
-                    </div>
-                </div>                
-                <div align="center">Room B</div>
-                <div class="row">
-                    <div class="col-2" style="padding-right: 0%">
-                        <div>
-                            <img class="room-icon" src="img/room.png" align="right">
+                    <div class="row">
+                        <div class="col-2" style="padding-right: 0%">
+                            <div>
+                                <img class="room-icon" src="img/room.png" align="right">
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-4">
-                        <div align="left">room 1</div>
-                    </div>
-                    <div id="roomB1_status" class="col-6">
-                        <div>Available</div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-2" style="padding-right: 0%">
-                        <div>
-                            <img class="room-icon" src="img/room.png" align="right">
+                        <div class="col-4">
+                            <div align="left">B3</div>
                         </div>
-                    </div>
-                    <div class="col-4">
-                        <div align="left">room 2</div>
-                    </div>
-                    <div id="roomB2_status" class="col-6">
-                        <div>Available</div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-2" style="padding-right: 0%">
-                        <div>
-                            <img class="room-icon" src="img/room.png" align="right">
+                        <div id="roomB3_status" class="col-6">
+                            Loading...
                         </div>
-                    </div>
-                    <div class="col-4">
-                        <div align="left">room 3</div>
-                    </div>
-                    <div id="roomB3_status" class="col-6">
-                        <div>Available</div>
                     </div>
                 </div>
             </div>
         </div>
         <div align="center" class="col-6" style="margin-top:10%">
-            <button class="btn btn-light themeFont zoom parallax" style="width: 200px; height: 100px; font-size:180%; color: olivedrab; border-color: black"
-                data-toggle="modal" data-target="#reserve">
-                Book Now
-            </button>
-        </div>
-        <div class="modal fade" id="reserve" tabindex="-1" role="dialog" aria-labelledby="detail" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content" style="width: 100%;">
-                    <div class="modal-header">
-                        <h5 id="room" class="modal-title" id="detail">Room 1A</h5>
+            <div class="row">
+                <div class="col">
+                    <button class="btn btn-light themeFont zoom parallax" style="width: 200px; height: 100px; font-size:180%; color: olivedrab; border-color: black"
+                        id="bookBtn">
+                        Book Now
+                    </button>
+                </div>
+            </div>
+            <div class="row justify-content-center mt-5">
+                <div class="col-12 col-md-5">
+                    <div class="temperature">
+                        <span id="Temperature" style="font-size:50px">N/A</span>
                     </div>
-                    <div id="estimated_time"class="modal-body">
-                        Estimated ready time: 25 minutes
-                        <div align="center" style="margin-top:3%">
-                            <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#confirm" style="width: 150px;">Decline</button>
-                        </div>
+                </div>
+                <div class="col-12 col-md-5">
+                    <div class="humid">
+                        <h3 id="Huminity" style="font-size:50px; margin-right: 30px;">N/A</h3>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="modal fade" id="confirm" tabindex="-1" role="dialog" aria-labelledby="detail" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content" style="background-color: rgb(248, 248, 248); width:300px; margin-left: 90px; margin-top: 70px">
-                    <div class="row modal-body" style="padding-top: 20px; padding-bottom: 20px; ">
-                        <div class="col-6">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal" style="width: 120px;">close</button>
-                        </div>
-                        <div class="col-6">
-                            <button type="button" class="btn btn-secondary" data-container="body" data-toggle="popover" data-placement="top" data-content="room b estimated time: 10 minute"
-                                style="width: 120px; ">Change room</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+
 
     </div>
-    <div class="row">
-        <div class="col-7">
-            <div class="temperature">
-                <h3 style="font-size:50px">25</h3>
-            </div>
-        </div>
-        <div class="col-2">
-            <div class="humid">
-                <h3 style="font-size:50px; margin-right: 30px;">25</h3>
-            </div>
-        </div>
 
+
+    <!-- Modal-->
+    <div class="modal fade" id="bookModal" tabindex="-1" role="dialog" aria-labelledby="detail" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" style="width: 100%;">
+                <div class="modal-header">
+                    <h5 id="room" class="modal-title" id="bookModal_title">Booking...</h5>
+                </div>
+                <div id="bookModal_body" class="modal-body" style="text-align:center">
+                    <h2 class="themeFont" id="zoneTxt">PLEASE WAIT</h2>
+                    Searching nearest and fastest Shower Room for you...
+                </div>
+                <div class="modal-footer">
+                    <button id="bookModal_btn" type="button" class="btn btn-secondary" style="width: 150px;">Cancel Booking</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="detail" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" style="background-color: rgb(248, 248, 248); width:300px; margin-left: 90px; margin-top: 70px">
+                <div class="row modal-body" style="padding-top: 20px; padding-bottom: 20px; ">
+                    <div class="col-6">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" style="width: 120px;">Close</button>
+                    </div>
+                    <div class="col-6">
+                        <button type="button" class="btn btn-secondary" data-container="body" data-toggle="popover" data-placement="top" data-content="room b estimated time: 10 minute"
+                            style="width: 120px; ">Change Room</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
