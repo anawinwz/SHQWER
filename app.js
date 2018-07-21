@@ -2,9 +2,9 @@ let isLoaded = {
     //TODO: Set dataList
 };
 let checkLoadCnt = function (total, callback) {
-    let total = 0;
+    let cnt = 0;
     for (var i = 0; i < shower.dataList.length; i++) {
-        total += isLoaded[shower.dataList[i]]
+        cnt += isLoaded[shower.dataList[i]]
     }
     console.log("<checkLoadCnt> cnt " + cnt + " total " + total)
     if (cnt == total) {
@@ -18,7 +18,7 @@ let shower = {
     isFirstLoaded: false,
 
 
-    updateData: function (key) {
+    updateDataSingle: function (key) {
         exceed.getVal(key, function (resp) {
             isLoaded[key] = 1
             checkLoadCnt(shower.dataList.length, function () {
@@ -46,7 +46,7 @@ let shower = {
         for (var i = 0; i < this.dataList.length; i++) {
             console.log(`<updateData> ${this.dataList[i]} START!`)
             let key = this.dataList[i]
-            this.updateData(key)
+            this.updateDataSingle(key)
         }
     },
 
