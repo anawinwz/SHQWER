@@ -110,6 +110,24 @@ h1 {
   }
 
   .room-icon {
-    width: 20px;
-    height: 20px;
+    width: 30px;
+    height: 30px;
+    margin-top: 5px;
   }
+
+  .temperature{
+    width: 150px;
+    height: 150px;
+    background:url(img/tempCircle.png) no-repeat right;   
+    background-size: 150px; 
+    font-size: 100px;
+    padding-top: 42px;
+    text-align: center;
+    margin-left: 1125px;
+    margin-top: 150px;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+}
+.list-room{
+    font-size: 25px;    
+}
