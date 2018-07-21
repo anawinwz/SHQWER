@@ -18,7 +18,8 @@ let exceed = {
             fail: function (response) {
                 console.log(`<getVal> Failed AJAX getting [${name}] value: ${response}`)
                 if (typeof callback == "function") callback(null)
-            }
+            },
+            timeout:5000
         });
     },
     saveVal: function (name, val, callback) {
@@ -42,7 +43,8 @@ let exceed = {
             fail: function (response) {
                 console.log(`<saveVal> Failed AJAX saving [${name}] value: ${response}`)
                 if (typeof callback == "function") callback(false)
-            }
+            },
+            timeout: 5000
         });
     },
     getHistory: function (name, callback, limit, before, after) {
