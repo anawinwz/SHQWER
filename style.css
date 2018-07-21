@@ -78,3 +78,35 @@ h1 {
     animation: spin .8s linear infinite;
 }
 /* -- END Loading -- */
+
+/* modal */
+.modal-header {
+    min-height: 16.42857143px;
+    padding: 15px;
+    border-bottom: 1px solid #7e7e7e;
+    }
+  
+  .modal-footer {
+    padding: 15px;
+    text-align: right;
+    border-top: 1px solid #7e7e7e;
+  }
+
+  .modal {
+  text-align: center;
+  padding: 0!important;
+}
+
+.modal:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  margin-right: -4px; /* Adjusts for spacing */
+}
+
+.modal-dialog {
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+}

@@ -15,7 +15,49 @@
 <body>
     <!-- Loading Screen -->
     <div id="cover-spin"></div>
-
+    <h1 align="center" style="margin-top: 3%">SHQWER</h1>
+    <div class="row" style="margin-top:15%">
+        <div class="col-6" align="center">
+            <button class="btn-light" style="width: 200px; height: 100px;">
+                ดูคิว
+            </button>
+        </div>
+        <div align="center" class="col-6">
+            <button class="btn-light" style="width: 200px; height: 100px;" data-toggle="modal" data-target="#reserve">
+                จองคิว
+            </button>
+        </div>
+        <div class="modal fade" id="reserve" tabindex="-1" role="dialog" aria-labelledby="detail" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content" style="background-color: rgb(42, 34, 48); width: 100%;">
+                    <div class="modal-header">
+                        <h5 id="room" class="modal-title" id="detail">Room 1A</h5>
+                    </div>
+                    <div class="modal-body">
+                        Estimated ready time: 25 minute
+                        <div align="center" style="margin-top:3%">
+                            <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#confirm" style="width: 150px;">Decline</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="confirm" tabindex="-1" role="dialog" aria-labelledby="detail" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content" style="background-color: rgb(2, 68, 88); width:300px">
+                    <div class="row modal-body" style="padding-top: 20px; padding-bottom: 20px; ">
+                        <div class="col-6">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal" style="width: 120px;">close</button>
+                        </div>
+                        <div class="col-6">
+                            <button type="button" class="btn btn-secondary" data-container="body" data-toggle="popover" data-placement="top" data-content="room b estimated time: 10 minute"
+                                style="width: 120px; ">Change room</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
         crossorigin="anonymous"></script>
