@@ -108,3 +108,8 @@ h1 {
     text-align: right;
     border-top: 1px solid #7e7e7e;
   }
+
+  .room-icon {
+    width: 20px;
+    height: 20px;
+  }
