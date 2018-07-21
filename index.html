@@ -15,7 +15,10 @@
 <body>
     <!-- Loading Screen -->
     <div id="cover-spin"></div>
-    <h1 align="center" style="margin-top: 3%;font-size:500%">SHQWER</h1>
+    <h1 align="center" class="black-stroke" style="margin-top: 3%;font-size:500%">SHQWER</h1>
+    <div class="bird-container">
+        <div class="bird bird--1"></div>
+    </div>
     <div class="row" style="margin-top:5%">
         <div class="col-6" align="center">
             <div class="bg-dark" style="margin-left:10%; margin-top:5%; width:80%; height:150%;">
@@ -26,13 +29,14 @@
             </div>
         </div>
         <div align="center" class="col-6" style="margin-top:10%">
-            <button class="btn btn-light themeFont" style="width: 200px; height: 100px; font-size:180%; color: #6aa41e;" data-toggle="modal" data-target="#reserve">
+            <button class="btn btn-light themeFont zoom parallax" style="width: 200px; height: 100px; font-size:180%; color: olivedrab; border-color: black" data-toggle="modal"
+                data-target="#reserve">
                 Book Now
             </button>
         </div>
         <div class="modal fade" id="reserve" tabindex="-1" role="dialog" aria-labelledby="detail" aria-hidden="true">
             <div class="modal-dialog" role="document">
-                <div class="modal-content" style="background-color: rgb(42, 34, 48); width: 100%;">
+                <div class="modal-content" style="width: 100%;">
                     <div class="modal-header">
                         <h5 id="room" class="modal-title" id="detail">Room 1A</h5>
                     </div>

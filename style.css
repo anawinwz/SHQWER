@@ -1,11 +1,9 @@
 /* background */
 body {
-    background: linear-gradient(227deg, #066e1e, #70b921, #c1c64b);
-background-size: 600% 600%;
+    background: url("bg.jpg");
+    background-size: 100% 100%;
+    height: 100%;
 
--webkit-animation: AnimationName 25s ease infinite;
--moz-animation: AnimationName 25s ease infinite;
-animation: AnimationName 25s ease infinite;
 }
 
 @-webkit-keyframes AnimationName {
@@ -82,6 +80,19 @@ h1 {
 }
 /* -- END Loading -- */
 
+/* button */
+.black-stroke{
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: black;
+}
+.zoom {
+    transition: transform .2s; /* Animation */
+}
+
+.zoom:hover {
+    transform: scale(1.5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}
+
 /* modal */
 .modal-header {
     min-height: 16.42857143px;
@@ -94,22 +105,3 @@ h1 {
     text-align: right;
     border-top: 1px solid #7e7e7e;
   }
-
-  .modal {
-  text-align: center;
-  padding: 0!important;
-}
-
-.modal:before {
-  content: '';
-  display: inline-block;
-  height: 100%;
-  vertical-align: middle;
-  margin-right: -4px; /* Adjusts for spacing */
-}
-
-.modal-dialog {
-  display: inline-block;
-  text-align: center;
-  vertical-align: middle;
-}
