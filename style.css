@@ -42,6 +42,9 @@ h1 {
     font-family: 'Roboto Condensed', sans-serif;
     color: white;
 }
+.modal-body, .modal-footer, .modal-title {
+    color: initial
+}
 
 
 /* -- START Loading -- */
