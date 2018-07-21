@@ -40,7 +40,7 @@ h1 {
 
 * {
     font-family: 'Roboto Condensed', sans-serif;
-    color: white;
+    color: black;
 }
 .modal-body, .modal-footer, .modal-title {
     color: initial
@@ -128,6 +128,21 @@ h1 {
     -webkit-text-stroke-width: 1px;
     -webkit-text-stroke-color: black;
 }
+
+  .humid{
+    width: 150px;
+    height: 150px;
+    background:url(img/humid.png) no-repeat right;   
+    background-size: 150px; 
+    font-size: 100px;
+    padding-top: 60px;
+    text-align: center;
+    margin-left: 50px;
+    margin-top: 140px;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+}
 .list-room{
-    font-size: 25px;    
+    font-size: 25px;
+    border: solid black 2px;
 }
