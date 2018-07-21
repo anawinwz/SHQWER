@@ -150,7 +150,7 @@ let shower = {
                             exceed.saveVal(`room${room}${subRoom}_state`, 0)
                             exceed.saveVal(`room${room}${subRoom}_start`, 0)
                             shower.dequeue(room, shower.userId)
-                            if (room == 'A' && roomId == 1) {
+                            if (room == 'A' && subRoom == 1) {
                                 exceed.saveVal('webswitch', 1)
                             }
                         } else if (state == 0 && start > 0) {
