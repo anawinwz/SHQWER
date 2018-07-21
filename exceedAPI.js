@@ -49,11 +49,10 @@ let exceed = {
     },
     getHistory: function (name, callback, limit, before, after) {
         console.log(`<getHistory> Redirecting to getVal...`)
-        this.getVal(name, (typeof callback != "undefined") ? callback : null, "history",
-            {
-                limit: (limit) ? limit : null,
-                before: (before) ? before : null,
-                after: (after) ? after : null
-            })
+        let data = {}
+        if(limit) data.limit = limit
+        if(before) data.before = before
+        if(after) data.after = after
+        this.getVal(name, (typeof callback != "undefined") ? callback : null, "history",data)
     }
 }

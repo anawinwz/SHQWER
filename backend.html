@@ -9,21 +9,68 @@
         crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css?family=Concert+One|Roboto+Condensed" rel="stylesheet">
-    <title>SHQWER</title>
-    <style>body{background:navy;}</style>
+    <title>SHQWER Backend</title>
 </head>
 
 <body>
-    <h1 align="center">SHQWER Statistics</h1>
-    <table class="table table-condensed" id="backendTbl">
-        <tr><th>Key</th><td>Value</td></tr>
-    </table>
+    <h1 align="center" class="text-dark">SHQWER Statistics</h1>
+    <center>
+        <small style="font-family: Arial, Helvetica, sans-serif;">Data on this page will be updated every 3 seconds.</small>
+    </center>
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col">
+                <h3 class="text-dark">Data History</h3>
+                <button class="btn btn-lg btn-dark" data-action="history" data-val="avgM">Average Usage Time</button>
+                <button class="btn btn-lg btn-dark" data-action="history" data-val="walkin">People walked-in</button>
+                <button class="btn btn-lg btn-dark" data-action="history" data-val="Temperature">Temperature</button>
+                <button class="btn btn-lg btn-dark" data-action="history" data-val="Huminity">Humidity</button>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <h3 class="text-dark">Variables</h3>
+                <table class="table table-condensed table-dark" id="backendTbl">
+                    <tr>
+                        <th class="text-light" width="45%">Topic
+                            <i class="text-muted">&lt;Key&gt;</i>
+                        </th>
+                        <th class="text-light">Value</th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Modal-->
+    <div class="modal fade" id="dataModal" tabindex="-1" role="dialog" aria-labelledby="detail" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" style="width: 100%;">
+                <div class="modal-header">
+                    <h5 id="room" class="modal-title" id="dataModal_title">Data History</h5>
+                </div>
+                <div id="dataModal_body" class="modal-body" style="text-align:center">
+                    <canvas id="dataChart" width="400" height="400"></canvas>
+                    <table class="table table-condensed" id="dataTable">
+                        <tr><th>Date/Time</th><th>Value</th></tr>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button id="dataModal_btn" type="button" class="btn btn-secondary" style="width: 150px;">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
         crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em"
         crossorigin="anonymous"></script>
     <script src="exceedAPI.js"></script>
+    <script src="Chart.min.js"></script>
     <script src="backend.js"></script>
 </body>
 
