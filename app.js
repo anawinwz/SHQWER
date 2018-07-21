@@ -89,8 +89,11 @@ let shower = {
                         }
                     })
                 }
+            } else if(key=="Temperature"||key=="Huminity"){
+                if(shower[key]<-100||shower[key]>100) {
+                    shower[key] = "N/A"
+                }
             }
-            //TODO: HTML Change
 
 
 
@@ -150,7 +153,7 @@ let shower = {
                             exceed.saveVal(`room${room}${subRoom}_state`, 0)
                             exceed.saveVal(`room${room}${subRoom}_start`, 0)
                             shower.dequeue(room, shower.userId)
-                            if (room == 'A' && roomId == 1) {
+                            if (room == 'A' && subRoom == 1) {
                                 exceed.saveVal('webswitch', 1)
                             }
                         } else if (state == 0 && start > 0) {
@@ -237,9 +240,16 @@ let shower = {
             shower.reloadRoom(shower.queuedRoom, function () {
                 console.log("reloadRoom")
                 console.log(shower.roomData[shower.queuedRoom])
+                /*
                 let fastestRoom = Array(shower.roomData[shower.queuedRoom]).reduce(function (l, e) {
                     return (e.timeLeft < l.timeLeft || (e.roomId < l.roomId && e.timeLeft == l.timeLeft)) ? e : l;
+                });*/
+                let fastestRoom = shower.roomData[shower.queuedRoom].sort(function IHaveAName(a, b) { // non-anonymous as you ordered...
+                    return b.timeLeft < a.timeLeft ?  1 // if b should come earlier, push a to end
+                         : b.roomId > a.roomId ? -1 // if b should come later, push a to begin
+                         : 0;                   // a and b are equal
                 });
+
                 fastestRoom = Array(fastestRoom)[0]
                 console.log("Getting fastestRoom!")
                 console.log(fastestRoom)
@@ -351,12 +361,15 @@ $(function () {
         Searching nearest and fastest Shower Room for you...`)
         $('#bookModal_btn').show()
         $('#bookModal').modal('show')
-        setTimeout(() => { $('#zoneTxt').text('ROOM A') }, 2000)
-        shower.bookRoom('A', function () {
-            shower.queuedRoom = 'A'
-            searchInterval = setInterval(function () { shower.selectSubRoom() }, 1000)
-            shower.selectSubRoom()
-        })
+        setTimeout(() => { 
+            $('#zoneTxt').text('ROOM A');
+            shower.bookRoom('A', function () {
+                shower.queuedRoom = 'A'
+                searchInterval = setInterval(function () { shower.selectSubRoom() }, 1000)
+                shower.selectSubRoom()
+            }) 
+        }, 6000)
+        
         return false
     })
     $('#cancelBtn').click(function () {
