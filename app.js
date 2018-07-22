@@ -156,6 +156,10 @@ let shower = {
                             exceed.saveVal(`room${room}${subRoom}_start`, start)
                         }
                     }
+                    if(state==1 && start==0) {
+                        state=0
+                        exceed.saveVal(`room${room}${subRoom}_state`,0)
+                    }
                     shower.roomData[room].push({
                         roomId: subRoom,
                         start: start,
@@ -182,8 +186,8 @@ let shower = {
                     } else if (state == 1) {
                         //AI reset room status
                         if ((room == 'A' && subRoom != 1) || room == 'B') {
-                            if (Date.now() - start > 5 * 60 * 1000)
-                                setTimeout(() => { console.log("AI reset room status"); exceed.saveVal(`room${room}${subRoom}_status`, 0); exceed.saveVal(`room${room}${subRoom}_start`, 0) }, getRandomInt(5000, 15000))
+                            if (start > 0 && Date.now() - start > getRandomInt(3,7) * 60 * 1000)
+                                setTimeout(() => { console.log(`AI reset room status ${room}${subRoom}`); exceed.saveVal(`room${room}${subRoom}_status`, 0); exceed.saveVal(`room${room}${subRoom}_start`, 0) }, getRandomInt(5000, 15000))
                         }
                         $(`#room${room}${subRoom}_status`).html('<span class="badge badge-danger">In Used</span>')
                     } else if (state == -1) {
@@ -269,7 +273,8 @@ let shower = {
                     return (b.timeLeft > a.timeLeft) ? -1
                         : (b.roomId == a.roomId && b.timeLeft < a.timeLeft) ? 1 // if b should come earlier, push a to end
                             : (b.roomId < a.roomId && b.timeLeft == a.timeLeft) ? 1 // if b should come later, push a to begin
-                                : (b.state == -1 && a.state == 0) ? -1
+                            : (b.state == 1 && a.state == 0) ? -1    
+                            : (b.state == -1 && a.state == 0) ? -1
                                     : 0;                   // a and b are equal
                 });
 
@@ -312,7 +317,7 @@ let shower = {
                             //AI
                             exceed.saveVal(`room${shower.queuedRoom}${fastestRoom[0].roomId}_start`, Date.now())
                             exceed.saveVal(`room${shower.queuedRoom}${fastestRoom[0].roomId}_state`, -1)
-                            setTimeout(() => { exceed.saveVal(`room${shower.queuedRoom}${fastestRoom[0].roomId}_state`, Math.round(Math.random())) }, 25000)
+                            //setTimeout(() => { exceed.saveVal(`room${shower.queuedRoom}${fastestRoom[0].roomId}_state`, Math.round(Math.random())) }, 25000)
                         }
 
                     } else {
