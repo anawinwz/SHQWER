@@ -321,7 +321,7 @@ let shower = {
                         }
 
                     } else {
-                        estTime = Date.now() - fastestRoom[0].start
+                        estTime = parseInt(shower["avg" + shower.rGender[shower.queuedRoom]])- (Date.now() - fastestRoom[0].start)
                         if (fastestRoom[0].state == -1) estTime += shower["avg" + shower.rGender[shower.queuedRoom]] / 2
                         if (estTime < 60000) {
                             estTime = 60000
