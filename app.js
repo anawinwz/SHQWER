@@ -337,6 +337,7 @@ let shower = {
                 }
 
                 $('#bookModal_btn').hide()
+                $('#confirmModal').modal('hide')
                 shower.queuedRoom = ''
                 if (estTime_mins != -1) {
                     if (isFirstSearch) {
@@ -399,6 +400,7 @@ function getRandomInt(min, max) {
 let searchInterval = null
 let isFirstSearch = true
 let nearestRoom = 'A'
+let isCancelled = false
 $(function () {
     exceed.configure({ url: 'http://ecourse.cpe.ku.ac.th/exceed/api/', prefix: 'palmyut-' })
     $('#cover-spin').show(0)
@@ -410,19 +412,21 @@ $(function () {
     $('#bookModal').modal({ show: false })
     $('#confirmModal').modal({ show: false })
     $('#bookBtn').click(function () {
+        isCancelled = false
         $('#bookModal_title').text('Booking...')
         $('#bookModal_body').html(`<p><img src="img/searching.gif"></p><h2 class="themeFont" id="zoneTxt">PLEASE WAIT</h2>
         Searching nearest and fastest Shower Room for you...`)
         $('#bookModal_btn').show()
         $('#bookModal').modal('show')
         setTimeout(() => {
+            if(isCancelled) return false
             $('#zoneTxt').text(`ROOM ${nearestRoom}`);
             shower.bookRoom(nearestRoom, function () {
                 shower.queuedRoom = nearestRoom
                 searchInterval = setInterval(function () { shower.selectSubRoom() }, 500)
                 shower.selectSubRoom()
             })
-        }, 3000)
+        }, 5000)
 
         return false
     })
@@ -431,7 +435,7 @@ $(function () {
         return false
     })
     $('#cancelBook_btn').click(function () {
-
+        isCancelled = true
         clearInterval(searchInterval)
         $('#cover-spin').show(0)
         shower.queuedRoom = ''
