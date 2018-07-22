@@ -383,7 +383,7 @@ let shower = {
                                 </div>
                                 <div class="col-6 roomStatus">
                                     <span id="room${room}${j}_status">Loading...</span>
-                                    `+ ((room != nearestRoom) ? '&nbsp;<span class="badge badge-secondary">Out of Range</span>' : '') + `
+                                    `+ ((room != nearestRoom) ? '&nbsp;<span class="badge badge-secondary d-none">Out of Range</span>' : '') + `
                                 </div>
                             </div>`
             }
