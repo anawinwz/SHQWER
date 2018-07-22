@@ -251,10 +251,12 @@ let shower = {
                 let fastestRoom = Array(shower.roomData[shower.queuedRoom]).reduce(function (l, e) {
                     return (e.timeLeft < l.timeLeft || (e.roomId < l.roomId && e.timeLeft == l.timeLeft)) ? e : l;
                 });*/
-                let fastestRoom = shower.roomData[shower.queuedRoom].sort(function IHaveAName(a, b) { // non-anonymous as you ordered...
-                    return (b.roomId == a.roomId && b.timeLeft < a.timeLeft) ? 1 // if b should come earlier, push a to end
+                let fastestRoom = shower.roomData[shower.queuedRoom]
+                fastestRoom = fastestRoom.sort(function IHaveAName(a, b) { // non-anonymous as you ordered...
+                    return (b.timeLeft > a.timeLeft) ? -1
+                        : (b.roomId == a.roomId && b.timeLeft < a.timeLeft) ? 1 // if b should come earlier, push a to end
                         : (b.roomId < a.roomId && b.timeLeft == a.timeLeft) ? 1 // if b should come later, push a to begin
-                            : (b.timeLeft > a.timeLeft) ? -1
+                            : (b.state == -1 && a.state==0) ? -1
                                 : 0;                   // a and b are equal
                 });
 
@@ -263,11 +265,10 @@ let shower = {
                 console.log(fastestRoom)
                 console.log("qNo:" + qNo)
                 if (qNo >= shower.subRoomCnt) {
-                    console.log(fastestRoom[shower.subRoomCnt - 1])
                     estTime = Date.now() - fastestRoom[shower.subRoomCnt - 1].start + (shower.subRoomCnt) * shower["avg" + shower.rGender[shower.queuedRoom]]
                 } else if (qNo > 1) {
-                    console.log(fastestRoom[qNo - 1])
                     estTime = Date.now() - fastestRoom[qNo - 1].start
+                    if(fastestRoom[shower.subRoomCnt - 1].state==-1) estTime += shower["avg" + shower.rGender[shower.queuedRoom]]/2
                 } else {
 
                     console.log(fastestRoom[0])
@@ -303,6 +304,7 @@ let shower = {
 
                     } else {
                         estTime = Date.now() - fastestRoom[0].start
+                        if(fastestRoom[0].state==-1) estTime += shower["avg" + shower.rGender[shower.queuedRoom]]/2
                         if (estTime < 60000) {
                             estTime = 60000
                         }
@@ -323,7 +325,8 @@ let shower = {
                         $('#bookModal_title').text('Booking Success!')
                         $('#bookModal_body').html(`<p><img src="img/door.png"></p>
                     <h3 class="themeFont">ROOM A</h3>
-                    Your Shower Room will be <i>approximately</i> available in <b>${estTime_mins} min(s)</b>!
+                    <p>Your Shower Room will be <i>approximately</i> available in <b>${estTime_mins} min(s)</b>!</p>
+                    Note: Estimated time also count Booking room(s) to become available.
                     `)
                         isFirstSearch = false
                     }
