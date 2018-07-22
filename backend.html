@@ -28,6 +28,17 @@
                 <button class="btn btn-lg btn-dark" data-action="history" data-val="Huminity">Humidity</button>
             </div>
         </div>
+        <div class="row mb-2">
+            <div class="col">
+                <h3 class="text-dark">Management</h3>
+                <a href="#" onclick="exceed.saveVal('currQueue_A','{}');return false" class="btn btn-secondary">Reset Queue</a>
+                <a href="#" onclick="exceed.saveVal('roomA1_state',0);return false" class="btn btn-secondary">Reset Room A1 State</a>
+            
+                <a href="#" onclick="exceed.saveVal('webswitch',0);return false" class="btn btn-success">Turn Booking LED On</a>
+                    
+                <a href="#" onclick="exceed.saveVal('webswitch',1);return false" class="btn btn-danger">Turn Booking LED Off</a>
+            </div>
+        </div>
 
         <div class="row">
             <div class="col">
@@ -51,16 +62,21 @@
             <div class="modal-content" style="width: 100%;">
                 <div class="modal-header">
                     <h5 id="room" class="modal-title" id="dataModal_title">Data History</h5>
+
+                    <a href="#" data-dismiss="modal" style="float:right">&times;</a>
                 </div>
                 <div id="dataModal_body" class="modal-body" style="text-align:center">
                     <div class="alert alert-info p-1">Showing only latest 100 values; shown times are in GMT timezone.</div>
                     <canvas id="dataChart" width="400" height="400"></canvas>
                     <table class="table table-condensed" id="dataTable">
-                        <tr><th>Date/Time</th><th>Value</th></tr>
+                        <tr>
+                            <th>Date/Time</th>
+                            <th>Value</th>
+                        </tr>
                     </table>
                 </div>
                 <div class="modal-footer">
-                    <button id="dataModal_btn" type="button" class="btn btn-secondary" style="width: 150px;">Close</button>
+                    <button id="dataModal_btn" data-dismiss="modal" type="button" class="btn btn-secondary" style="width: 150px;">Close</button>
                 </div>
             </div>
         </div>
