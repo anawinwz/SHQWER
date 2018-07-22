@@ -151,3 +151,7 @@ h1 {
 .roomStatus{
     text-align:right
 }
+
+::selection {
+    background: rgb(192, 192, 192); /* WebKit/Blink Browsers */
+  }
