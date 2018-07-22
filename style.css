@@ -144,3 +144,7 @@ h1 {
     font-size: 25px;
     border: solid black 2px;
 }
+
+.badge{
+    font-size:60%
+}

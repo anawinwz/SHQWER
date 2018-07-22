@@ -172,9 +172,12 @@ let shower = {
                                 setTimeout(() => { console.log("AI reset room status"); exceed.saveVal(`room${room}${subRoom}_status`, 0); exceed.saveVal(`room${room}${subRoom}_start`, 0) }, getRandomInt(5000, 15000))
                         }
                         $(`#room${room}${subRoom}_status`).html('<span class="badge badge-danger">In Used</span>')
-                    } else {
+                    } else if(state==-1) {
 
                         $(`#room${room}${subRoom}_status`).html('<span class="badge badge-warning">Booking</span>')
+                    }
+                    if(room=='B') {
+                        $(`#room${room}${subRoom}_status`).append(` <span class="badge badge-secondary">Out of Range</span>`)
                     }
 
 
