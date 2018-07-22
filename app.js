@@ -342,7 +342,7 @@ let shower = {
                     if (isFirstSearch) {
                         $('#bookModal_title').text('Booking Success!')
                         $('#bookModal_body').html(`<p><img src="img/door.png"></p>
-                    <h3 class="themeFont">ROOM A</h3>
+                    <h3 class="themeFont">ROOM ${nearestRoom}</h3>
                     <p>Your Shower Room will be <i>approximately</i> available in <b>${estTime_mins} min(s)</b>!</p>
                     Note: Estimated time also count Booking room(s) to become available.
                     `)
@@ -351,7 +351,7 @@ let shower = {
                 } else {
                     $('#bookModal_title').text('Your Room is Ready!')
                     $('#bookModal_body').html(`<p><img src="img/door-ok.png"></p>
-                    <h3 class="themeFont">ROOM A${fastestRoom[0].roomId}</h3>
+                    <h3 class="themeFont">ROOM ${nearestRoom}${fastestRoom[0].roomId}</h3>
                     Your Shower Room is READY!<br>Enjoy freshness <b>within 1 minute</b> at Room A.<br><br>Otherwise, your booking will be cancelled.
                     `)
                     isFirstSearch = true
@@ -398,10 +398,11 @@ function getRandomInt(min, max) {
 }
 let searchInterval = null
 let isFirstSearch = true
+let nearestRoom = 'A'
 $(function () {
     exceed.configure({ url: 'http://ecourse.cpe.ku.ac.th/exceed/api/', prefix: 'palmyut-' })
     $('#cover-spin').show(0)
-    shower.drawRoomList('A')
+    shower.drawRoomList(nearestRoom)
 
     shower.updateData()
     setInterval(function () { shower.updateData() }, 3000)
@@ -415,9 +416,9 @@ $(function () {
         $('#bookModal_btn').show()
         $('#bookModal').modal('show')
         setTimeout(() => {
-            $('#zoneTxt').text('ROOM A');
-            shower.bookRoom('A', function () {
-                shower.queuedRoom = 'A'
+            $('#zoneTxt').text(`ROOM ${nearestRoom}`);
+            shower.bookRoom(nearestRoom, function () {
+                shower.queuedRoom = nearestRoom
                 searchInterval = setInterval(function () { shower.selectSubRoom() }, 500)
                 shower.selectSubRoom()
             })
