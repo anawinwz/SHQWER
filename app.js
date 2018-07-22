@@ -283,9 +283,9 @@ let shower = {
                 console.log(fastestRoom)
                 console.log("qNo:" + qNo)
                 if (qNo >= shower.subRoomCnt) {
-                    estTime = Date.now() - fastestRoom[shower.subRoomCnt - 1].start + (shower.subRoomCnt) * shower["avg" + shower.rGender[shower.queuedRoom]]
+                    estTime = parseInt(shower["avg" + shower.rGender[shower.queuedRoom]]) - (Date.now() - fastestRoom[shower.subRoomCnt - 1].start) + ((shower.subRoomCnt) * shower["avg" + shower.rGender[shower.queuedRoom]])
                 } else if (qNo > 1) {
-                    estTime = Date.now() - fastestRoom[qNo - 1].start
+                    estTime = parseInt(shower["avg" + shower.rGender[shower.queuedRoom]]) - (Date.now() - fastestRoom[qNo - 1].start)
                     if (fastestRoom[shower.subRoomCnt - 1].state == -1) estTime += shower["avg" + shower.rGender[shower.queuedRoom]] / 2
                 } else {
 
