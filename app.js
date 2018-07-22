@@ -145,12 +145,26 @@ let shower = {
                     // console.log("Date.now(): " + Date.now())
                     // console.log("FinalVal: " + (Date.now() - start))
                     shower.reloadCnt++
+                    if ((room == 'B' || (room == 'A' && subRoom != 1)) && state == 0) {
+                        //try to AI random
+                        let r = getRandomInt(0, 100)
+                        if (r == 45) {
+                            console.log("AI access room! 1% chance")
+                            state = 1
+                            start = Date.now()
+                            exceed.saveVal(`room${room}${subRoom}_state`, state)
+                            exceed.saveVal(`room${room}${subRoom}_start`, start)
+                        }
+                    }
                     shower.roomData[room].push({
                         roomId: subRoom,
                         start: start,
                         state: state,
                         timeLeft: (start <= 0) ? 0 : parseInt(shower["avg" + shower.rGender[room]]) - (Date.now() - start)
                     })
+
+
+
                     if (state == 0 || (state == -1 && start > 0 && Date.now() - start > 1000 * 60 * 1)) {
                         if (state == -1) {
                             console.log(`Reset booking state for ROOM ${room}${subRoom}`)
@@ -166,20 +180,16 @@ let shower = {
                         }
                         $(`#room${room}${subRoom}_status`).html(`<span class="badge badge-success">Available</span>`)
                     } else if (state == 1) {
-                        //AI 
+                        //AI reset room status
                         if ((room == 'A' && subRoom != 1) || room == 'B') {
-                            if (Date.now() - start > 30 * 60 * 1000)
+                            if (Date.now() - start > 5 * 60 * 1000)
                                 setTimeout(() => { console.log("AI reset room status"); exceed.saveVal(`room${room}${subRoom}_status`, 0); exceed.saveVal(`room${room}${subRoom}_start`, 0) }, getRandomInt(5000, 15000))
                         }
                         $(`#room${room}${subRoom}_status`).html('<span class="badge badge-danger">In Used</span>')
-                    } else if(state==-1) {
+                    } else if (state == -1) {
 
                         $(`#room${room}${subRoom}_status`).html('<span class="badge badge-warning">Booking</span>')
                     }
-                    if(room=='B') {
-                        $(`#room${room}${subRoom}_status`).append(` <span class="badge badge-secondary">Out of Range</span>`)
-                    }
-
 
                     if (typeof callback == "function") setTimeout(() => { if (shower.reloadCnt == shower.subRoomCnt) { callback(); shower.reloadCnt = 0 } }, 500)
                 })
@@ -258,9 +268,9 @@ let shower = {
                 fastestRoom = fastestRoom.sort(function IHaveAName(a, b) { // non-anonymous as you ordered...
                     return (b.timeLeft > a.timeLeft) ? -1
                         : (b.roomId == a.roomId && b.timeLeft < a.timeLeft) ? 1 // if b should come earlier, push a to end
-                        : (b.roomId < a.roomId && b.timeLeft == a.timeLeft) ? 1 // if b should come later, push a to begin
-                            : (b.state == -1 && a.state==0) ? -1
-                                : 0;                   // a and b are equal
+                            : (b.roomId < a.roomId && b.timeLeft == a.timeLeft) ? 1 // if b should come later, push a to begin
+                                : (b.state == -1 && a.state == 0) ? -1
+                                    : 0;                   // a and b are equal
                 });
 
                 fastestRoom = Array(fastestRoom)[0]
@@ -271,7 +281,7 @@ let shower = {
                     estTime = Date.now() - fastestRoom[shower.subRoomCnt - 1].start + (shower.subRoomCnt) * shower["avg" + shower.rGender[shower.queuedRoom]]
                 } else if (qNo > 1) {
                     estTime = Date.now() - fastestRoom[qNo - 1].start
-                    if(fastestRoom[shower.subRoomCnt - 1].state==-1) estTime += shower["avg" + shower.rGender[shower.queuedRoom]]/2
+                    if (fastestRoom[shower.subRoomCnt - 1].state == -1) estTime += shower["avg" + shower.rGender[shower.queuedRoom]] / 2
                 } else {
 
                     console.log(fastestRoom[0])
@@ -307,7 +317,7 @@ let shower = {
 
                     } else {
                         estTime = Date.now() - fastestRoom[0].start
-                        if(fastestRoom[0].state==-1) estTime += shower["avg" + shower.rGender[shower.queuedRoom]]/2
+                        if (fastestRoom[0].state == -1) estTime += shower["avg" + shower.rGender[shower.queuedRoom]] / 2
                         if (estTime < 60000) {
                             estTime = 60000
                         }
@@ -346,6 +356,35 @@ let shower = {
 
             })
         })
+    },
+    drawRoomList: function (nearestRoom) {
+        let html = '', drawList = [nearestRoom, (nearestRoom == 'A') ? 'B' : 'A']
+        console.log(drawList)
+        for (var i = 0; i < drawList.length; i++) {
+            let room = drawList[i]
+            console.log(room)
+            html += `<div` + ((room == nearestRoom) ? ' style="background:rgba(255,255,255,0.5)" class="pb-2"' : '') + `>`
+            html += `<div align="center" class="themeFont">Room ${room}</div>`
+            for (var j = 1; j <= this.subRoomCnt; j++) {
+                html += `<div class="row">
+                                <div class="col-2" style="padding-right: 0%">
+                                    <div>
+                                        <img class="room-icon" src="img/room.png" align="right">
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <div align="left">${room}${j}</div>
+                                </div>
+                                <div class="col-6 roomStatus">
+                                    <span id="room${room}${j}_status">Loading...</span>
+                                    `+ ((room != nearestRoom) ? '&nbsp;<span class="badge badge-secondary">Out of Range</span>' : '') + `
+                                </div>
+                            </div>`
+            }
+            html += `</div>`
+        }
+        $('#roomList').html(html)
+
     }
 
 }
@@ -357,6 +396,7 @@ let isFirstSearch = true
 $(function () {
     exceed.configure({ url: 'http://ecourse.cpe.ku.ac.th/exceed/api/', prefix: 'palmyut-' })
     $('#cover-spin').show(0)
+    shower.drawRoomList('A')
 
     shower.updateData()
     setInterval(function () { shower.updateData() }, 3000)

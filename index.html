@@ -26,93 +26,96 @@
     <div class="container-fluid">
         <div class="row align-items-center" style="height: 30%;width:100%">
             <div class="col-12 col-md-6" align="center">
-                <div id="room-list" class="list-room rounded mt-3" style="width:80%; height:400px;">
-                    <h2 align="center" class="themeFont">AVAILIBILITY</h2>
-                    <div class="pb-2" style="background-color:rgba(255,255,255,0.5)">
-                        <div align="center" class="themeFont">Room A</div>
+                <div id="roomListZone" class="list-room rounded mt-3" style="width:80%; height:400px;">
+                    <h3 class="themeFont">AVAILIBILITY</h3>
+                    <div id="roomList">
+                        <div class="pb-2" style="background-color:rgba(255,255,255,0.5)">
+                            <div align="center" class="themeFont">Room A</div>
 
-                        <div class="row">
-                            <div class="col-2" style="padding-right: 0%">
-                                <div>
-                                    <img class="room-icon" src="img/room.png" align="right">
+                            <div class="row">
+                                <div class="col-2" style="padding-right: 0%">
+                                    <div>
+                                        <img class="room-icon" src="img/room.png" align="right">
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <div align="left">A1</div>
+                                </div>
+                                <div id="roomA1_status" class="col-6 roomStatus">
+                                    Loading...
                                 </div>
                             </div>
-                            <div class="col-3">
-                                <div align="left">A1</div>
+                            <div class="row">
+                                <div class="col-2" style="padding-right: 0%">
+                                    <div>
+                                        <img class="room-icon" src="img/room.png" align="right">
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <div align="left">A2</div>
+                                </div>
+                                <div id="roomA2_status" class="col-6 roomStatus">
+                                    Loading...
+                                </div>
                             </div>
-                            <div id="roomA1_status" class="col-6 roomStatus">
-                                Loading...
+                            <div class="row">
+                                <div class="col-2" style="padding-right: 0%">
+                                    <div>
+                                        <img class="room-icon" src="img/room.png" align="right">
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <div align="left">A3</div>
+                                </div>
+                                <div id="roomA3_status" class="col-6 roomStatus">
+                                    Loading...
+                                </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-2" style="padding-right: 0%">
-                                <div>
-                                    <img class="room-icon" src="img/room.png" align="right">
+                        <div>
+                            <div align="center" class="themeFont">Room B</div>
+                            <div class="row">
+                                <div class="col-2" style="padding-right: 0%">
+                                    <div>
+                                        <img class="room-icon" src="img/room.png" align="right">
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <div align="left">B1</div>
+                                </div>
+                                <div id="roomB1_status" class="col-6 roomStatus">
+                                    Loading...
                                 </div>
                             </div>
-                            <div class="col-3">
-                                <div align="left">A2</div>
-                            </div>
-                            <div id="roomA2_status" class="col-6 roomStatus">
-                                Loading...
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-2" style="padding-right: 0%">
-                                <div>
-                                    <img class="room-icon" src="img/room.png" align="right">
+                            <div class="row">
+                                <div class="col-2" style="padding-right: 0%">
+                                    <div>
+                                        <img class="room-icon" src="img/room.png" align="right">
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <div align="left">B2</div>
+                                </div>
+                                <div id="roomB2_status" class="col-6 roomStatus">
+                                    Loading...
                                 </div>
                             </div>
-                            <div class="col-3">
-                                <div align="left">A3</div>
-                            </div>
-                            <div id="roomA3_status" class="col-6 roomStatus">
-                                Loading...
+                            <div class="row">
+                                <div class="col-2" style="padding-right: 0%">
+                                    <div>
+                                        <img class="room-icon" src="img/room.png" align="right">
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <div align="left">B3</div>
+                                </div>
+                                <div id="roomB3_status" class="col-6 roomStatus">
+                                    Loading...
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div>
-                        <div align="center" class="themeFont">Room B</div>
-                        <div class="row">
-                            <div class="col-2" style="padding-right: 0%">
-                                <div>
-                                    <img class="room-icon" src="img/room.png" align="right">
-                                </div>
-                            </div>
-                            <div class="col-3">
-                                <div align="left">B1</div>
-                            </div>
-                            <div id="roomB1_status" class="col-6 roomStatus">
-                                Loading...
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-2" style="padding-right: 0%">
-                                <div>
-                                    <img class="room-icon" src="img/room.png" align="right">
-                                </div>
-                            </div>
-                            <div class="col-3">
-                                <div align="left">B2</div>
-                            </div>
-                            <div id="roomB2_status" class="col-6 roomStatus">
-                                Loading...
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-2" style="padding-right: 0%">
-                                <div>
-                                    <img class="room-icon" src="img/room.png" align="right">
-                                </div>
-                            </div>
-                            <div class="col-3">
-                                <div align="left">B3</div>
-                            </div>
-                            <div id="roomB3_status" class="col-6 roomStatus">
-                                Loading...
-                            </div>
-                        </div>
-                    </div>
+
                 </div>
             </div>
             <div align="center" class="col-12 col-md-6" style="margin-top:10%">
