@@ -52,7 +52,7 @@ let shower = {
                 shower[key] = resp
             }
 
-            
+
 
             if (key == "localswitch") {
                 if (oldVal == 1 && resp == 0) {
@@ -90,8 +90,8 @@ let shower = {
                         }
                     })*/
                 }
-            } else if(key=="Temperature"||key=="Huminity"){
-                if(shower[key]<-100||shower[key]>100) {
+            } else if (key == "Temperature" || key == "Huminity") {
+                if (shower[key] < -100 || shower[key] > 100) {
                     shower[key] = "N/A"
                 }
             }
@@ -138,6 +138,7 @@ let shower = {
             exceed.getVal(`room${room}${subRoom}_start`, function (start) {
                 start = parseInt(start)
                 exceed.getVal(`room${room}${subRoom}_state`, function (state) {
+                    start = (state != 0) ? start : 0
                     console.log(`---room${room}${subRoom}---`)
                     console.log("start: " + start)
                     console.log("state: " + state)
@@ -146,9 +147,9 @@ let shower = {
                     shower.reloadCnt++
                     shower.roomData[room].push({
                         roomId: subRoom,
-                        start: (state != 0) ? start : 0,
+                        start: start,
                         state: state,
-                        timeLeft: (start <= 0) ? 0 : parseInt(shower["avg" + shower.rGender[shower.queuedRoom]]) - (Date.now() - start)
+                        timeLeft: (start <= 0) ? 0 : parseInt(shower["avg" + shower.rGender[room]]) - (Date.now() - start)
                     })
                     if (state == 0 || (state == -1 && start > 0 && Date.now() - start > 1000 * 60 * 1)) {
                         if (state == -1) {
@@ -167,8 +168,8 @@ let shower = {
                     } else if (state == 1) {
                         //AI 
                         if ((room == 'A' && subRoom != 1) || room == 'B') {
-                            if(Date.now()-start>30*60*1000)
-                            setTimeout(() => { console.log("AI reset room status");exceed.saveVal(`room${room}${subRoom}_status`,0);exceed.saveVal(`room${room}${subRoom}_start`,0)}, getRandomInt(5000,15000))
+                            if (Date.now() - start > 30 * 60 * 1000)
+                                setTimeout(() => { console.log("AI reset room status"); exceed.saveVal(`room${room}${subRoom}_status`, 0); exceed.saveVal(`room${room}${subRoom}_start`, 0) }, getRandomInt(5000, 15000))
                         }
                         $(`#room${room}${subRoom}_status`).html('<span class="badge badge-danger">In Used</span>')
                     } else {
@@ -251,9 +252,10 @@ let shower = {
                     return (e.timeLeft < l.timeLeft || (e.roomId < l.roomId && e.timeLeft == l.timeLeft)) ? e : l;
                 });*/
                 let fastestRoom = shower.roomData[shower.queuedRoom].sort(function IHaveAName(a, b) { // non-anonymous as you ordered...
-                    return b.timeLeft < a.timeLeft ?  1 // if b should come earlier, push a to end
-                         : b.roomId > a.roomId ? -1 // if b should come later, push a to begin
-                         : 0;                   // a and b are equal
+                    return (b.roomId == a.roomId && b.timeLeft < a.timeLeft) ? 1 // if b should come earlier, push a to end
+                        : (b.roomId < a.roomId && b.timeLeft == a.timeLeft) ? 1 // if b should come later, push a to begin
+                            : (b.timeLeft > a.timeLeft) ? -1
+                                : 0;                   // a and b are equal
                 });
 
                 fastestRoom = Array(fastestRoom)[0]
@@ -361,28 +363,28 @@ $(function () {
         Searching nearest and fastest Shower Room for you...`)
         $('#bookModal_btn').show()
         $('#bookModal').modal('show')
-        setTimeout(() => { 
+        setTimeout(() => {
             $('#zoneTxt').text('ROOM A');
             shower.bookRoom('A', function () {
                 shower.queuedRoom = 'A'
                 searchInterval = setInterval(function () { shower.selectSubRoom() }, 500)
                 shower.selectSubRoom()
-            }) 
+            })
         }, 3000)
-        
+
         return false
     })
     $('#bookModal_btn').click(function () {
         $('#confirmModal').modal('show')
         return false
     })
-    $('#cancelBook_btn').click(function(){
-    
+    $('#cancelBook_btn').click(function () {
+
         clearInterval(searchInterval)
         $('#cover-spin').show(0)
         shower.queuedRoom = ''
 
-        shower.dequeue(shower.queuedRoom,shower.userId,function(){
+        shower.dequeue(shower.queuedRoom, shower.userId, function () {
             $('#cover-spin').hide(0)
             $('#confirmModal').modal('hide')
             $('#bookModal').modal('hide')

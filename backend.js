@@ -56,6 +56,12 @@ $(function () {
     setInterval(function() {backend.updateData()},3000)
     $('#dataModal').modal({show:false})
     $('[data-action="history"]').click(function(){
+        $('#dataModal_body').html(`
+        <div class="alert alert-info p-1">Showing only latest 100 values; shown times are in GMT timezone.</div>
+                    <canvas id="dataChart" width="400" height="400"></canvas>
+                    <table class="table table-condensed" id="dataTable">
+                        <tr><th>Date/Time</th><th>Value</th></tr>
+                    </table>`)
         let thisData = $(this).data()
         exceed.getHistory(thisData.val,function(resp){
             resp = JSON.parse(resp)
@@ -63,6 +69,8 @@ $(function () {
             let dataVal = []
             let dataKey = []
             for(var key in resp){
+                //resp[key].created_at = new Date(Date.parse(resp[key].created_at.replace(" ","T")+"+00:00"))
+                if((thisData.val!="avgM" &&( resp[key].value<-100 || resp[key].value >100))||(thisData.val=="Temperature" && resp[key].value<15)) continue
                 dataVal.push(resp[key].value)
                 dataKey.push(resp[key].created_at)
                 $('#dataTable').append(`<tr><td>${resp[key].created_at}</td><td>${resp[key].value}</td></tr>`)
